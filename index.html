@@ -6,7 +6,7 @@
 <body>
 	<script>
 
-		var testArray = ["item1", "item2", "item3", "item4"];
+		var testArray = ["item1", "item2", "item3",, "item4"];
 
 		myForEch(testArray, test1);
 		myForEch(testArray, test2);
@@ -24,6 +24,7 @@
 
 		function myForEch(array, func){
 			for (var i = 0; i < array.length; i++) {
+				if (array[i] === undefined) continue;
 				func(array[i], i, array);
 			}
 		}
