@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lesons 6</title>
+	<title>Lesons 7</title>
 </head>
 <body>
 	<script>
 
-		alert("getResult = " + getResult(1, 3, "*"));
+		var testArray = ["item1", "item2", "item3", "item4"];
 
-		alert(foo("hello", ["o"]));
+		myForEch(testArray, test1);
+		myForEch(testArray, test2);
+		myForEch(testArray, test3);
 
-		function getResult (firstNumber, secondNumber, mathChar) {
-			switch (mathChar) {
-				case "+":
-					return firstNumber + secondNumber;
-				case "-":
-					return firstNumber - secondNumber;
-				case "*":
-					return firstNumber * secondNumber;
-				case "/":
-					return firstNumber / secondNumber;
-				default:
-					return "Error mathChar";
-			}
+		function test1(element){
+			console.log(element);
+		}
+		function test2(element, item){
+			console.log(element, item);
+		}
+		function test3(element, item, array){
+			console.log(element, item, array);
 		}
 
-		function foo(inputString, charList) {
-			var outString = "";
-
-			for (var i = 0; i < inputString.length; i++) {
-				if (!checkCharInArrey(inputString[i], charList)) {
-					outString += inputString[i];
-				}
+		function myForEch(array, func){
+			for (var i = 0; i < array.length; i++) {
+				func(array[i], i, array);
 			}
-
-			return outString;
-		}
-
-		function checkCharInArrey (char, charArrey) {
-			for (var i = 0; i < charArrey.length; i++) {
-				if (char === charArrey[i]) { return true;}
-			}
-
-			return false;
 		}
 
 	</script>
