@@ -16,7 +16,8 @@
 		console.log(isPolindrome(151));
 		console.log(isPolindrome(152));
 
-		console.log(flat(secondTest));
+		console.log(myFlat(secondTest));
+		console.log(secondTest.flat(Infinity)); // :-)
 
 		function odd(array) {
 			return array.reduce(function(arr, number){
@@ -37,12 +38,12 @@
 			return false;
 		}
 
-		function flat(inputArray) {
+		function myFlat(inputArray) {
 			let outArray = [];
 
 			inputArray.forEach(function(item) {
 				if (Array.isArray(item)) {
-					outArray = outArray.concat(flat(item));
+					outArray = outArray.concat(myFlat(item));
 				} else {
 					outArray.push(item);
 				}
