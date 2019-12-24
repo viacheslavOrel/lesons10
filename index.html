@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lesons 7</title>
+	<title>Lesons 08</title>
 </head>
 <body>
 	<script>
 
-		var testArray = ["item1", "item2", "item3",, "item4"];
+		const array = [1,2,3,4,5,6,7,8,9,10];
+		const secondTest = [[1,2,3,[4,5,6,7]], [8, 9, 10, [11, 12,13]]];
 
-		myForEch(testArray, test1);
-		myForEch(testArray, test2);
-		myForEch(testArray, test3);
+		console.log(odd(array));
 
-		function test1(element){
-			console.log(element);
-		}
-		function test2(element, item){
-			console.log(element, item);
-		}
-		function test3(element, item, array){
-			console.log(element, item, array);
+		console.log(even(array));
+		
+		console.log(isPolindrome(151));
+		console.log(isPolindrome(152));
+
+		console.log(flat(secondTest));
+
+		function odd(array) {
+			return array.reduce(function(arr, number){
+				if (number % 2 === 1) arr.push(number);
+				return arr;
+			}, [])
 		}
 
-		function myForEch(array, func){
-			for (var i = 0; i < array.length; i++) {
-				if (array[i] === undefined) continue;
-				func(array[i], i, array);
-			}
+		function even(array) {
+			return array.reduce(function(arr, number) {
+				if (number % 2 === 0) arr.push(number);
+				return arr;
+			}, [])
+		}
+
+		function isPolindrome(number) {
+			if (String(number) === String(number).split("").reverse().join("")) return true;
+			return false;
+		}
+
+		function flat(inputArray) {
+			let outArray = [];
+
+			inputArray.forEach(function(item) {
+				if (Array.isArray(item)) {
+					outArray = outArray.concat(flat(item));
+				} else {
+					outArray.push(item);
+				}
+			});
+
+			return outArray;
 		}
 
 	</script>
