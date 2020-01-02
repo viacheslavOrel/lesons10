@@ -1,55 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lesons 08</title>
+	<title>Lesons 09</title>
 </head>
 <body>
 	<script>
 
-		const array = [1,2,3,4,5,6,7,8,9,10];
-		const secondTest = [[1,2,3,[4,5,6,7]], [8, 9, 10, [11, 12,13]]];
+		console.log(findPolindrome(96));
+		console.log(findPolindrome(165));
+		console.log(findPolindrome(726));
+		console.log(findPolindrome(196));
 
-		console.log(odd(array));
 
-		console.log(even(array));
-		
-		console.log(isPolindrome(151));
-		console.log(isPolindrome(152));
+		function findPolindrome(number) {
+			const startNumber = number;
+			let iterationCounter = 0;
 
-		console.log(myFlat(secondTest));
-		console.log(secondTest.flat(Infinity)); // :-)
-
-		function odd(array) {
-			return array.reduce(function(arr, number){
-				if (number % 2 === 1) arr.push(number);
-				return arr;
-			}, [])
-		}
-
-		function even(array) {
-			return array.reduce(function(arr, number) {
-				if (number % 2 === 0) arr.push(number);
-				return arr;
-			}, [])
-		}
-
-		function isPolindrome(number) {
-			if (String(number) === String(number).split("").reverse().join("")) return true;
-			return false;
-		}
-
-		function myFlat(inputArray) {
-			let outArray = [];
-
-			inputArray.forEach(function(item) {
-				if (Array.isArray(item)) {
-					outArray = outArray.concat(myFlat(item));
+			const findPolindromeIterator = function(number) {
+				if (isPolindrome(String(number))) {
+					return  "Число " + startNumber + " становится полиндромом после " + iterationCounter + " итераций";
 				} else {
-					outArray.push(item);
+					iterationCounter++;
+					return findPolindromeIterator(number + getReversNumber(number));
 				}
-			});
+				console.log("");
+			}
 
-			return outArray;
+			try {
+				return findPolindromeIterator(number);
+			} catch (ex) {
+				return "Не удалось вычеслить количесво итераций после которых число " + startNumber + " становитсыя полиндромом!";
+			}
+			
+		}
+
+		function isPolindrome(string) {
+			for (var i = 0; i < string.length; i++) {
+				if (string[i] !== string[string.length - i - 1]) return false;
+			}
+			return true;
+		}
+		function getReversNumber(number) {
+			return parseInt(String(number).split("").reverse().join(""));
 		}
 
 	</script>
