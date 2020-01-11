@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lesons 09</title>
+	<title>Lesons 10</title>
 </head>
 <body>
 	<script>
+		//test sumNumber-----------------------------
+		const sum = sumNumber();
 
-		console.log(findPolindrome(96));
-		console.log(findPolindrome(165));
-		console.log(findPolindrome(726));
-		console.log(findPolindrome(196));
+		console.log(sum(3));
+		console.log(sum(5));
+		console.log(sum(20));
+
+		//testCounter---------------------------------
+		const myCounter = createCounter();
+
+		console.log(myCounter());
+		console.log(myCounter());
+		console.log(myCounter());
+		console.log(myCounter());
+
+		myCounter.value = 100;
+		console.log(myCounter());
+		console.log(myCounter());
+		console.log(myCounter());
+
+		myCounter.step = 200;
+		console.log(myCounter());
+		console.log(myCounter());
+		console.log(myCounter());
+		console.log(myCounter());
 
 
-		function findPolindrome(number) {
-			const startNumber = number;
-			let iterationCounter = 0;
+		//Function---------------------------------
+		function sumNumber() {
+			let oldNumber;
 
-			const findPolindromeIterator = function(number) {
-				if (isPolindrome(String(number))) {
-					return  "Число " + startNumber + " становится полиндромом после " + iterationCounter + " итераций";
-				} else {
-					iterationCounter++;
-					return findPolindromeIterator(number + getReversNumber(number));
-				}
-				console.log("");
+			return function (number) {
+				oldNumber = oldNumber === undefined ? number : oldNumber + number;
+
+				return oldNumber;
 			}
-
-			try {
-				return findPolindromeIterator(number);
-			} catch (ex) {
-				return "Не удалось вычеслить количесво итераций после которых число " + startNumber + " становитсыя полиндромом!";
-			}
-			
 		}
 
-		function isPolindrome(string) {
-			for (var i = 0; i < string.length; i++) {
-				if (string[i] !== string[string.length - i - 1]) return false;
+		function createCounter() {
+			function counter() {
+				counter.value += counter.step;
+				return counter.value;
 			}
-			return true;
-		}
-		function getReversNumber(number) {
-			return parseInt(String(number).split("").reverse().join(""));
-		}
 
+			counter.value = 1;
+			counter.step = 1;
+
+			return counter;
+		}
 	</script>
 </body>
 </html>
