@@ -14,23 +14,30 @@
 
 		//testCounter---------------------------------
 		const myCounter = createCounter();
+		const mySecondCounter = createCounter(1000, 100);
 
 		console.log(myCounter());
 		console.log(myCounter());
 		console.log(myCounter());
 		console.log(myCounter());
 
-		myCounter.value = 100;
-		console.log(myCounter());
-		console.log(myCounter());
-		console.log(myCounter());
-
-		myCounter.step = 200;
+		myCounter.reset();
 		console.log(myCounter());
 		console.log(myCounter());
 		console.log(myCounter());
 		console.log(myCounter());
 
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+
+		mySecondCounter.reset();
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+		console.log(mySecondCounter());
+		
 
 		//Function---------------------------------
 		function sumNumber() {
@@ -43,14 +50,18 @@
 			}
 		}
 
-		function createCounter() {
-			function counter() {
-				counter.value += counter.step;
-				return counter.value;
+		function createCounter(startValue, step) {
+			let count = startValue === undefined ? 0 : startValue;
+			let stepValue = step === undefined ? 1 : step;
+
+			function counter () {
+				return count += stepValue;
 			}
 
-			counter.value = 1;
-			counter.step = 1;
+			counter.reset = () => { 
+				count = startValue === undefined ? 0 : startValue;
+				stepValue = step === undefined ? 1 : step;
+			}
 
 			return counter;
 		}
